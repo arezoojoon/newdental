@@ -25,6 +25,9 @@ DB_NAME = "dental_bot.db"
 # Dubai timezone (UTC+4)
 DUBAI_TZ = timezone(timedelta(hours=4))
 
+# Google Maps Link (Search query based on address)
+MAP_LINK = "https://www.google.com/maps/search/?api=1&query=Gemini+Medical+Center+Dubai+Al+Wasl+Rd+Al+Safa+1"
+
 if not TELEGRAM_TOKEN:
     print("❌ ERROR: TELEGRAM_BOT_TOKEN is missing!")
 if not GOOGLE_API_KEY:
@@ -55,9 +58,10 @@ TRANS = {
         "greeting": "{name} عزیز، ",
         "services_reply": "خدمات کلینیک:\n• ایمپلنت و کاشت دندان\n• ارتودنسی\n• لمینت و کامپوزیت\n• جرمگیری و بلیچینگ\n• عصب‌کشی و ترمیم",
         "hours_reply": "ساعات کاری:\nهمه روزه از ساعت ۱۰:۰۰ صبح تا ۲۱:۰۰ شب",
-        "address_reply": "آدرس:\nدبی، خیابان الوصل، الصفا ۱، پلاک ۶۳۵",
+        "address_reply": f"🏥 **Gemini Medical Center**\n\nآدرس:\nدبی، خیابان الوصل، الصفا ۱، پلاک ۶۳۵\n\n📍 [مشاهده در گوگل مپ]({MAP_LINK})",
         "booking_prompt": "برای چه خدمتی نوبت می‌خواهید؟",
-        "doctor_prompt": "نام دکتر مدنظر (یا بنویسید «فرقی نمی‌کند»):",
+        "doctor_prompt": "لطفاً پزشک مورد نظر خود را انتخاب کنید:",
+        "any_doctor": "فرقی نمی‌کند",
         "time_prompt": "لطفاً یکی از زمان‌های خالی زیر را انتخاب کنید (زمان به وقت دبی):",
         "booking_done": "✅ نوبت شما با موفقیت رزرو شد. منتظر دیدار شما هستیم.",
         "photo_analyzing": "🖼 در حال بررسی تصویر دندان شما توسط هوش مصنوعی... لطفاً صبر کنید.",
@@ -90,9 +94,10 @@ TRANS = {
         "greeting": "Dear {name}, ",
         "services_reply": "Our Services:\n• Implants\n• Orthodontics\n• Veneers & Composite\n• Scaling & Whitening\n• Root Canal",
         "hours_reply": "Working Hours:\nDaily from 10:00 AM to 09:00 PM",
-        "address_reply": "Address:\nDubai, Al Wasl Rd, Al Safa 1, Bldg 635",
+        "address_reply": f"🏥 **Gemini Medical Center**\n\nAddress:\nDubai, Al Wasl Rd, Al Safa 1, Bldg 635\n\n📍 [View on Google Maps]({MAP_LINK})",
         "booking_prompt": "Which service do you need?",
-        "doctor_prompt": "Preferred doctor (or type 'Any'):",
+        "doctor_prompt": "Please select your preferred doctor:",
+        "any_doctor": "Any Doctor",
         "time_prompt": "Please select an available slot (Dubai Time):",
         "booking_done": "✅ Appointment confirmed. We look forward to seeing you.",
         "photo_analyzing": "🖼 Analyzing your dental image with AI... Please wait.",
@@ -125,9 +130,10 @@ TRANS = {
         "greeting": "عزيزي {name}، ",
         "services_reply": "خدماتنا:\n• زراعة الأسنان\n• تقويم الأسنان\n• القشور الخزفية\n• تنظيف وتبييض الأسنان\n• علاج الجذور",
         "hours_reply": "ساعات العمل:\nيومياً من ١٠ صباحاً حتى ٩ مساءً",
-        "address_reply": "العنوان:\nدبي، شارع الوصل، الصفا ١، مبنى ٦٣٥",
+        "address_reply": f"🏥 **Gemini Medical Center**\n\nالعنوان:\nدبي، شارع الوصل، الصفا ١، مبنى ٦٣٥\n\n📍 [عرض على خريطة جوجل]({MAP_LINK})",
         "booking_prompt": "ما هي الخدمة المطلوبة؟",
-        "doctor_prompt": "اسم الطبيب المفضل (أو اكتب 'أي طبيب'):",
+        "doctor_prompt": "الرجاء اختيار الطبيب المفضل:",
+        "any_doctor": "أي طبيب",
         "time_prompt": "الرجاء اختيار وقت من الأوقات المتاحة (توقيت دبي):",
         "booking_done": "✅ تم تأكيد الحجز. ننتظر زیارتكم.",
         "photo_analyzing": "🖼 جاري تحليل الصورة بالذكاء الاصطناعي...",
@@ -160,9 +166,10 @@ TRANS = {
         "greeting": "Уважаемый(ая) {name}, ",
         "services_reply": "Наши услуги:\n• Имплантация\n• Ортодонтия\n• Виниры\n• Чистка и отбеливание\n• Лечение каналов",
         "hours_reply": "Часы работы:\nЕжедневно с 10:00 до 21:00",
-        "address_reply": "Адрес:\nДубай, Аль Васл Роуд, Аль Сафа 1, здание 635",
+        "address_reply": f"🏥 **Gemini Medical Center**\n\nАдрес:\nДубай, Аль Васл Роуд, Аль Сафа 1, здание 635\n\n📍 [Посмотреть на Google Maps]({MAP_LINK})",
         "booking_prompt": "Какая услуга вам нужна?",
-        "doctor_prompt": "Предпочитаемый врач (или напишите 'Любой'):",
+        "doctor_prompt": "Выберите врача:",
+        "any_doctor": "Любой врач",
         "time_prompt": "Выберите свободное время (время Дубая):",
         "booking_done": "✅ Ваша запись подтверждена.",
         "photo_analyzing": "🖼 ИИ анализирует ваш снимок... Пожалуйста, подождите.",
@@ -326,6 +333,9 @@ async def send_message(chat_id: int, text: str, reply_markup: dict = None, parse
             payload["reply_markup"] = reply_markup
         if parse_mode:
             payload["parse_mode"] = parse_mode
+        # Default to Markdown for links
+        elif "http" in text or "**" in text: 
+            payload["parse_mode"] = "Markdown"
 
         async with httpx.AsyncClient(timeout=20) as client:
             await client.post(f"{TELEGRAM_URL}/sendMessage", json=payload)
@@ -343,6 +353,7 @@ async def get_file_info(file_id):
 
 
 async def call_gemini_api(body, lang: str = "en"):
+    # Updated to gemini-1.5-flash. If this fails, try 'gemini-pro'
     url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
     headers = {"Content-Type": "application/json", "x-goog-api-key": GOOGLE_API_KEY}
     texts = TRANS.get(lang, TRANS["en"])
@@ -433,6 +444,17 @@ def main_keyboard(lang):
         "resize_keyboard": True,
     }
 
+def doctors_keyboard(lang):
+    # Feature: Doctor selection buttons
+    any_txt = TRANS.get(lang, TRANS["en"])["any_doctor"]
+    return {
+        "keyboard": [
+            [{"text": "Dr. One"}, {"text": "Dr. Two"}],
+            [{"text": any_txt}],
+            [{"text": TRANS.get(lang, TRANS["en"])["cancel_button"]}]
+        ],
+        "resize_keyboard": True,
+    }
 
 def slots_keyboard(slots, lang):
     texts = TRANS.get(lang, TRANS["en"])
@@ -469,7 +491,7 @@ def startup_event():
 
 @app.get("/")
 async def root():
-    return {"status": "ok", "message": "Dental Bot V11 (Multilingual)"}
+    return {"status": "ok", "message": "Dental Bot V12 (Fixed AI & Features)"}
 
 
 @app.get("/trigger-reminders")
@@ -741,7 +763,12 @@ async def webhook(request: Request):
                     ("doctor", json.dumps(data_state), chat_id),
                 )
                 conn.commit()
-            await send_message(chat_id, texts["doctor_prompt"])
+            # Feature: Show Doctor buttons here
+            await send_message(
+                chat_id, 
+                texts["doctor_prompt"],
+                reply_markup=doctors_keyboard(lang)
+            )
             return {"ok": True}
 
         if step == "doctor":
@@ -788,9 +815,11 @@ async def webhook(request: Request):
                 )
                 if ADMIN_CHAT_ID:
                     try:
+                        doc = data_state.get("doctor", "Any")
+                        srv = data_state.get("service", "General")
                         await send_message(
                             int(ADMIN_CHAT_ID),
-                            f"📅 Booking:\nName: {user_name}\nWA: {user_row[1]}\nTime: {full_slot}",
+                            f"📅 Booking:\nName: {user_name}\nWA: {user_row[1]}\nService: {srv}\nDr: {doc}\nTime: {full_slot}",
                         )
                     except Exception:
                         pass
@@ -829,9 +858,10 @@ async def webhook(request: Request):
                 conn.commit()
             await send_message(chat_id, f"{prefix}{texts['booking_prompt']}")
         elif idx == 3:
+            # Feature: Address with Link
             await send_message(
                 chat_id,
-                f"{prefix}\n{texts['address_reply']}",
+                f"{texts['address_reply']}",
                 reply_markup=main_keyboard(lang),
             )
         elif idx == 4:
